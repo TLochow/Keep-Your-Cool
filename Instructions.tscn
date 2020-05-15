@@ -1,0 +1,120 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Instructions.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/four-seasons-tileset.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/ARCADE_N.TTF" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 8
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 4
+outline_size = 2
+font_data = ExtResource( 3 )
+
+[node name="Instructions" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 256, 150 )
+scale = Vector2( 32, 2.67857 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 48, 144, 16, 112 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 64, 100 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 112, 16, 16 )
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( 64, 124 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 112, 16, 16 )
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( 454, 100 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 112, 128, 16, 16 )
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( 454, 124 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 128, 16, 16 )
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -228.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Instructions"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 32.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Frosty the snowman has a problem. Spring is arrving.
+But he doesn't want to melt.
+Thankfully he heard about four magic potions
+that can make him immune against heat.
+Each Potion is hidden in one of the seasons.
+Find them all!
+
+Control Frosty with W, A and D
+(or Z, Q and D or the arrow keys)
+
+Press Space to change the season.
+But be careful!
+Frosty will melt in seasons other than winter.
+So keep an eye on your Health Bar, and keep your cool!
+
+Try to beat the game as fast as possible!
+Press Space to Start!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 56.0
+margin_right = -5.0
+margin_bottom = -5.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+text = "Art by RottingPixels - https://rottingpixels.itch.io/
+Artpack: Four Seasons Platformer Tileset - https://rottingpixels.itch.io/four-seasons-platformer-tileset-16x16free"
+align = 2
+valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

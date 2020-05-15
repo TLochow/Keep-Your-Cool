@@ -1,0 +1,167 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Sprites/four-seasons-tileset.png" type="Texture" id=1]
+[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/HealthBarProgress.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/HealthBarBack.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/HealthBarBorder.png" type="Texture" id=5]
+[ext_resource path="res://Sound/Jump.wav" type="AudioStream" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.03712, 9.00377 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "Stand"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Walk"
+length = 0.5
+loop = true
+step = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.9, 1 ), Vector2( 1.1, 1 ), Vector2( 0.9, 1 ) ]
+}
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.592593, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 2
+emission_box_extents = Vector3( 3, 1, 1 )
+flag_disable_z = true
+direction = Vector3( -1, -0.5, 0 )
+spread = 10.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+color_ramp = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+emission_shape = 2
+emission_box_extents = Vector3( 3, 1, 1 )
+flag_disable_z = true
+direction = Vector3( -1, -0.5, 0 )
+spread = 10.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+color_ramp = SubResource( 5 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 3, 1, 1 )
+flag_disable_z = true
+direction = Vector3( 1, -0.5, 0 )
+spread = 10.0
+gravity = Vector3( 0, 100, 0 )
+initial_velocity = 50.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+color_ramp = SubResource( 5 )
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.8, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 112, 78, 16, 18 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 912
+limit_bottom = 512
+
+[node name="Coolness" type="TextureProgress" parent="."]
+margin_left = -11.9328
+margin_top = -13.9216
+margin_right = 148.067
+margin_bottom = 26.0784
+rect_scale = Vector2( 0.15, 0.25 )
+value = 100.0
+texture_under = ExtResource( 4 )
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 3 )
+tint_progress = Color( 0.00392157, 0.0196078, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Stand = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+
+[node name="WalkingParticles" type="Particles2D" parent="."]
+position = Vector2( 0.0735645, 9.06645 )
+emitting = false
+amount = 20
+lifetime = 0.5
+local_coords = false
+process_material = SubResource( 6 )
+
+[node name="FallParticlesLeft" type="Particles2D" parent="."]
+position = Vector2( 0.0735645, 9.06645 )
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 7 )
+
+[node name="FallParticlesRight" type="Particles2D" parent="."]
+position = Vector2( 0.0735645, 9.06645 )
+emitting = false
+amount = 32
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+local_coords = false
+process_material = SubResource( 8 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
